@@ -1,8 +1,9 @@
 package com.econetwireless.epay.business.utils;
 
-import com.econetwireless.in.soap.BalanceResponse;
-import com.econetwireless.in.soap.CreditRequest;
-import com.econetwireless.in.soap.CreditResponse;
+
+import com.econetwireless.in.soap.messages.BalanceResponse;
+import com.econetwireless.in.soap.messages.CreditRequest;
+import com.econetwireless.in.soap.messages.CreditResponse;
 import com.econetwireless.utils.pojo.INBalanceResponse;
 import com.econetwireless.utils.pojo.INCreditRequest;
 import com.econetwireless.utils.pojo.INCreditResponse;

@@ -4,6 +4,7 @@ import com.econetwireless.epay.business.integrations.api.ChargingPlatform;
 import com.econetwireless.epay.business.services.api.EnquiriesService;
 import com.econetwireless.epay.dao.subscriberrequest.api.SubscriberRequestDao;
 import com.econetwireless.epay.domain.SubscriberRequest;
+import com.econetwireless.in.soap.messages.BalanceResponse;
 import com.econetwireless.utils.constants.SystemConstants;
 import com.econetwireless.utils.enums.ResponseCode;
 import com.econetwireless.utils.messages.AirtimeBalanceResponse;
@@ -34,7 +35,7 @@ public class EnquiriesServiceImpl implements EnquiriesService {
         final AirtimeBalanceResponse airtimeBalanceResponse = new AirtimeBalanceResponse();
         final SubscriberRequest subscriberRequest = populate(partnerCode, msisdn);
         final SubscriberRequest createdSubscriberRequest = subscriberRequestDao.persist(subscriberRequest);
-        final INBalanceResponse inBalanceResponse = chargingPlatform.enquireBalance(partnerCode, msisdn);
+        final BalanceResponse inBalanceResponse = chargingPlatform.enquireBalance(partnerCode, msisdn);
         changeSubscriberStateOnBalanceEnquiry(createdSubscriberRequest, inBalanceResponse);
         subscriberRequestDao.update(createdSubscriberRequest);
         airtimeBalanceResponse.setResponseCode(inBalanceResponse.getResponseCode());
@@ -45,7 +46,7 @@ public class EnquiriesServiceImpl implements EnquiriesService {
         return airtimeBalanceResponse;
     }
 
-    private static void changeSubscriberStateOnBalanceEnquiry(final SubscriberRequest subscriberRequest, final INBalanceResponse inBalanceResponse) {
+    private static void changeSubscriberStateOnBalanceEnquiry(final SubscriberRequest subscriberRequest, final BalanceResponse inBalanceResponse) {
         final boolean isSuccessfulResponse = ResponseCode.SUCCESS.getCode().equalsIgnoreCase(inBalanceResponse.getResponseCode());
         if(!isSuccessfulResponse) {
             subscriberRequest.setStatus(SystemConstants.STATUS_FAILED);

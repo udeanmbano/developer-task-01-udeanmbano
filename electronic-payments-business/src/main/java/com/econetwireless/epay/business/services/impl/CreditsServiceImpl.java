@@ -4,6 +4,8 @@ import com.econetwireless.epay.business.integrations.api.ChargingPlatform;
 import com.econetwireless.epay.business.services.api.CreditsService;
 import com.econetwireless.epay.dao.subscriberrequest.api.SubscriberRequestDao;
 import com.econetwireless.epay.domain.SubscriberRequest;
+import com.econetwireless.in.soap.messages.CreditRequest;
+import com.econetwireless.in.soap.messages.CreditResponse;
 import com.econetwireless.utils.constants.SystemConstants;
 import com.econetwireless.utils.enums.ResponseCode;
 import com.econetwireless.utils.messages.AirtimeTopupRequest;
@@ -36,7 +38,7 @@ public class CreditsServiceImpl implements CreditsService{
         final AirtimeTopupResponse airtimeTopupResponse = new AirtimeTopupResponse();
         final SubscriberRequest subscriberRequest = populateSubscriberRequest(airtimeTopupRequest);
         final SubscriberRequest createdSubscriberRequest = subscriberRequestDao.persist(subscriberRequest);
-        final INCreditResponse inCreditResponse = chargingPlatform.creditSubscriberAccount(populate(airtimeTopupRequest));
+        final CreditResponse inCreditResponse = chargingPlatform.creditSubscriberAccount(populate(airtimeTopupRequest));
         changeSubscriberRequestStatusOnCredit(createdSubscriberRequest, inCreditResponse);
         subscriberRequestDao.update(createdSubscriberRequest);
         airtimeTopupResponse.setResponseCode(inCreditResponse.getResponseCode());
@@ -47,7 +49,7 @@ public class CreditsServiceImpl implements CreditsService{
         return airtimeTopupResponse;
     }
 
-    private static void changeSubscriberRequestStatusOnCredit(final SubscriberRequest subscriberRequest, final INCreditResponse inCreditResponse) {
+    private static void changeSubscriberRequestStatusOnCredit(final SubscriberRequest subscriberRequest, final CreditResponse inCreditResponse) {
         final boolean isSuccessfulResponse = ResponseCode.SUCCESS.getCode().equalsIgnoreCase(inCreditResponse.getResponseCode());
         if(!isSuccessfulResponse) {
             subscriberRequest.setStatus(SystemConstants.STATUS_FAILED);
@@ -66,8 +68,8 @@ public class CreditsServiceImpl implements CreditsService{
         subscriberRequest.setAmount(airtimeTopupRequest.getAmount());
         return subscriberRequest;
     }
-    private static INCreditRequest populate(final AirtimeTopupRequest airtimeTopupRequest) {
-        final INCreditRequest inCreditRequest = new INCreditRequest();
+    private static CreditRequest populate(final AirtimeTopupRequest airtimeTopupRequest) {
+        final CreditRequest inCreditRequest = new CreditRequest();
         inCreditRequest.setAmount(airtimeTopupRequest.getAmount());
         inCreditRequest.setMsisdn(airtimeTopupRequest.getMsisdn());
         inCreditRequest.setPartnerCode(airtimeTopupRequest.getPartnerCode());
