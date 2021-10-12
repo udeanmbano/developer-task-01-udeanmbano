@@ -1,5 +1,7 @@
 package com.econetwireless.epay.domain;
 
+package com.econetwireless.epay.domain;
+
 import com.econetwireless.utils.constants.SystemConstants;
 import com.econetwireless.utils.keygen.KeyGen;
 
@@ -39,7 +41,7 @@ public class SubscriberRequest {
     @Version
     private long version;
 
-    @PreInsert
+    @PrePersist
     protected void init() {
         if(id == null) {
             id = KeyGen.getUniqueId();
