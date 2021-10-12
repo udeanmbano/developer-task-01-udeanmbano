@@ -2,8 +2,7 @@ package com.econetwireless.epay.business.integrations.impl;
 
 import com.econetwireless.epay.business.integrations.api.ChargingPlatform;
 import com.econetwireless.epay.business.utils.MessageConverters;
-import com.econetwireless.in.webservice.CreditRequest;
-import com.econetwireless.in.webservice.IntelligentNetworkService;
+
 import com.econetwireless.utils.pojo.INBalanceResponse;
 import com.econetwireless.utils.pojo.INCreditRequest;
 import com.econetwireless.utils.pojo.INCreditResponse;

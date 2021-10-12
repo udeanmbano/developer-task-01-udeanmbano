@@ -41,8 +41,9 @@
     <build>
         <plugins>
             <plugin>
-            <groupId>org.jvnet.jax-ws-commons</groupId>
-            <artifactId>jaxws-maven-plugin</artifactId>
+                <groupId>org.jvnet.jax-ws-commons</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>2.3</version>
             <executions>
             <execution>
                 <id>intelligent-network-service</id>
@@ -56,7 +57,7 @@
                     <extension>true</extension>
                     <wsdlDirectory>${basedir}/src/main/resources/wsdls</wsdlDirectory>
                     <sourceDestDir>${project.build.directory}/generated-sources/main/java</sourceDestDir>
-                    <packageName>com.econetwireless.in.webservice</packageName>
+                    <packageName>com.econetwireless.in.soap</packageName>
                 </configuration>
             </execution>
             </executions>
