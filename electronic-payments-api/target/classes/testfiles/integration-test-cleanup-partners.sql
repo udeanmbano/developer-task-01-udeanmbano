@@ -1,1 +1,0 @@
-delete from e_req_partner  where id = 123;

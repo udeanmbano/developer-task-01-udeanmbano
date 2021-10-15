@@ -207,8 +207,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version> <configuration>
-                    <skip>false</skip>
-                </configuration>
+                <skip>false</skip>
+            </configuration>
                 <executions>
                     <execution>
                         <id>unit-tests</id>
