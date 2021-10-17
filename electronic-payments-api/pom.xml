@@ -13,10 +13,12 @@
 
     <artifactId>electronic-payments-api</artifactId>
     <dependencies>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.econetwireless</groupId>
             <artifactId>electronic-payments-business</artifactId>
