@@ -5,7 +5,6 @@ import com.econetwireless.epay.business.config.IntegrationsConfig;
 import com.econetwireless.epay.business.config.RootConfig;
 import com.econetwireless.in.soap.messages.CreditRequest;
 import com.econetwireless.utils.enums.ResponseCode;
-import com.econetwireless.utils.messages.AirtimeTopupRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
