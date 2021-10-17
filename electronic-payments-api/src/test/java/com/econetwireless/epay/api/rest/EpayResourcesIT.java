@@ -1,4 +1,4 @@
-package com.econetwireless.epay.api.rest.resources;
+package com.econetwireless.epay.api.rest;
 
 import com.econetwireless.epay.api.config.EpayApiWebConfig;
 import com.econetwireless.epay.business.config.RootConfig;
